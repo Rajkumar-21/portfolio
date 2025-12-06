@@ -8,26 +8,26 @@ const Certifications = () => {
   const [error, setError] = useState(null);
   const [selectedBadge, setSelectedBadge] = useState(null);
 
-  useEffect(() => {
-    const loadBadges = async () => {
-      try {
-        setLoading(true);
-        const data = await fetchCredlyBadges();
-        setBadges(data);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const loadBadges = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await fetchCredlyBadges();
+      setBadges(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     loadBadges();
   }, []);
 
   if (loading) {
     return (
-      <section id="certifications" className="section-container bg-gray-50 dark:bg-gray-800">
+      <section id="certifications" className="section-container bg-gray-50">
         <h2 className="section-title">Certifications</h2>
         <div className="flex justify-center items-center py-20">
           <FaSpinner className="animate-spin text-primary-600 text-5xl" />
@@ -38,14 +38,25 @@ const Certifications = () => {
 
   if (error) {
     return (
-      <section id="certifications" className="section-container bg-gray-50 dark:bg-gray-800">
+      <section id="certifications" className="section-container bg-gray-50">
         <h2 className="section-title">Certifications</h2>
         <div className="max-w-2xl mx-auto text-center py-20">
           <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-            <p className="text-red-700 text-lg">{error}</p>
+            <p className="text-red-700 text-lg mb-2">{error}</p>
+            <p className="text-gray-600 text-sm mb-4">
+              This may be due to CORS restrictions. You can view my certifications directly on{' '}
+              <a 
+                href="https://www.credly.com/users/aa930a5b-a2a3-4922-8bc3-43292f13eacb/badges" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary-600 hover:text-primary-700 underline"
+              >
+                Credly
+              </a>
+            </p>
             <button
-              onClick={() => window.location.reload()}
-              className="mt-4 btn-primary"
+              onClick={loadBadges}
+              className="btn-primary"
             >
               Try Again
             </button>
@@ -56,7 +67,7 @@ const Certifications = () => {
   }
 
   return (
-    <section id="certifications" className="section-container bg-gray-50 dark:bg-gray-800">
+    <section id="certifications" className="section-container bg-gray-50">
       <h2 className="section-title">
         <FaAward className="inline-block mr-3 text-primary-600" />
         Certifications
