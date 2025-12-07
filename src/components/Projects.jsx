@@ -8,6 +8,13 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'RajFlix - AI Powered Movie & Shows indexing Platform',
+      description: 'An AI-powered platform that indexes movies and shows, providing personalized recommendations and search functionality.',
+      technologies: ['React', 'Typescript', 'Gemini AI'],
+      githubUrl: 'https://github.com/Rajkumar-21/RajFlix',
+      liveUrl: 'https://rajkumar-21.github.io/RajFlix/',
+    },
+    {
       title: 'Google Books Inventory App',
       description: 'A full-stack application to manage and track book inventories using Google Books API.',
       technologies: ['React', 'Node.js', 'Tailwind CSS'],
